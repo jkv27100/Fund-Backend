@@ -1,14 +1,17 @@
-import debug from "debug";
-import express from "express";
-import auth from "./routes/auth.js";
+require("dotenv").config();
+const express = require("express");
+const debug = require("debug")("app:dev");
+const registerRouter = require("./routes/register");
+const loginRouter = require("./routes/login");
 
 const app = express();
-const devDebug = debug("app:dev");
+app.use(express.json());
 
-app.use("/auth", auth.router);
+app.use("/api/register", registerRouter);
+app.use("/api/login", loginRouter);
+console.log(process.env.DEBUG);
+debug(app.get("env"));
 
-devDebug(app.get("env"));
-const PORT = process.env.PORT || 4500;
-app.listen(PORT, () => {
-  devDebug("server running" + PORT);
+app.listen(process.env.PORT, () => {
+  debug(`Server started on port ${process.env.PORT}`);
 });

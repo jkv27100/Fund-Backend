@@ -3,14 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "nodemon app.js"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "debug": "^4.3.1",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "lodash": "^4.17.21"
+    "joi": "^17.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^5.12.13"
   },
-  "devDependencies": {},
-  "type": "module"
+  "devDependencies": {}
 }
