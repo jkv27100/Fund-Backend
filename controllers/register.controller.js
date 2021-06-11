@@ -1,4 +1,3 @@
-const router = require("express").Router();
 const debug = require("debug")("app:dev");
 const _ = require("lodash");
 
@@ -10,11 +9,11 @@ const users = [
   },
 ];
 
-router.get("/", (req, res) => {
+const getUsers = (req, res) => {
   res.send(users.map((e) => _.pick(e, ["name", "email"])));
-});
+};
 
-router.post("/", async (req, res) => {
+const registerUser = (req, res) => {
   const newUser = _.pick(req.body, ["name", "email", "password"]);
 
   if (users.find((e) => e.email === req.body.email))
@@ -22,6 +21,6 @@ router.post("/", async (req, res) => {
 
   users.push(newUser);
   res.status(200).send("Registerd");
-});
+};
 
-module.exports = router;
+module.exports = { getUsers, registerUser };
