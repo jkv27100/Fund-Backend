@@ -9,9 +9,10 @@ app.use(express.json());
 
 app.use("/api/register", registerRouter);
 app.use("/api/login", loginRouter);
-console.log(process.env.DEBUG);
-debug(app.get("env"));
+// console.log(process.env.DEBUG);
+// debug(app.get("env"));
 
-app.listen(process.env.PORT, () => {
-  debug(`Server started on port ${process.env.PORT}`);
-});
+
+app.listen(3030, () => {
+  console.log("Running");
+})
