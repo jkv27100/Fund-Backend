@@ -22,5 +22,11 @@ const addNotification = (req, res) => {
 }
 
 const deleteNotification = (req, res) => {
-    
+    res.send("delete noti")
+}
+
+module.exports = {
+    getNotification,
+    addNotification,
+    deleteNotification
 }
