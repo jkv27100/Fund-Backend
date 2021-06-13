@@ -2,16 +2,27 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+const notiDetails = new Schema({
+    title : {
+        type : String,
+        required : true
+    },
+    details : {
+        type : String,
+        required : true
+    },
+    notificationId : {
+        type : Number,
+        required : true
+    }
+});
+
 const notificationSchema = new Schema({
     userId : {
         type: Number,
         required: true
     },
-    userNotifications : {
-        type: [{title : String, details : String}],
-        required: true,
-        default: null
-    }
+    userNotifications : notiDetails
 }, {timestamps : true});
 
 const Notification = mongoose.model('Notification', notificationSchema);

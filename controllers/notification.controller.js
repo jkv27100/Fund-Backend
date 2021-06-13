@@ -11,14 +11,18 @@ const getNotification = (req, res) => {
     })
 }
 
-const addNotification = (req, res) => {
-    const notification = new Notification({
-        userId : 101,
-        userNotifications: {title : "test notification 1", details : "This is the first test notification"}
-    })
-    notification.save()
-        .then((result => res.send(result)))
-        .catch(err => console.log(err));
+const addNotification = async (req, res) => {
+    // const notification = new Notification({
+    //     userId : 101,
+    //     userNotifications: {title : "test notification 1", details : "This is the first test notification"}
+    // })
+    // notification.save()
+    //     .then((result => res.send(result)))
+    //     .catch(err => console.log(err));
+    const notificationRecord = req.body;
+    const response = await Notification.create(notificationRecord);
+    console.log(response);
+    res.json({status :'success'})
 }
 
 const deleteNotification = (req, res) => {
