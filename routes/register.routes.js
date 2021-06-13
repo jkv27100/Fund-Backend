@@ -4,8 +4,8 @@ const {
   getUsers,
 } = require("../controllers/register.controller");
 
-router.get("/", (req, res) => getUsers(req, res));
+router.get("/", getUsers);
 
-router.post("/", (req, res) => registerUser(req, res));
+router.post("/", registerUser);
 
 module.exports = router;
