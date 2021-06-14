@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+//need to reconsider the notification schema model
 const notiDetails = new Schema({
     title : {
         type : String,

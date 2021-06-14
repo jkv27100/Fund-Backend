@@ -1,15 +1,16 @@
 const  Notification = require('../models/notification');
 
-const getNotification = (req, res) => {
-    let notifications = Notification.find({}, function(err, notifications){
-        if(err){
-            console.log(err);
-        }
-        else {
-            res.json(notifications);
-        }
-    })
+const getNotification = async (req, res) => {
+    const notificationRecords = await Notification.find({});
+    res.json(notificationRecords);
 }
+
+const getNotificationById = async (req, res) => {
+    const id = req.params.user_id
+    const notificationRecords = await Notification.find({'userId' : id});
+    res.json(notificationRecords);
+}
+
 
 const addNotification = async (req, res) => {
     // const notification = new Notification({
@@ -32,5 +33,6 @@ const deleteNotification = (req, res) => {
 module.exports = {
     getNotification,
     addNotification,
-    deleteNotification
+    deleteNotification,
+    getNotificationById
 }
