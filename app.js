@@ -5,6 +5,7 @@ const debug = require("debug")("app:dev");
 const registerRouter = require("./routes/register.routes");
 const loginRouter = require("./routes/login.routes");
 const notiRouter = require("./routes/notifications.routes");
+const postRouter = require("./routes/posts.routes");
 
 const app = express();
 app.use(express.json());
@@ -22,6 +23,8 @@ connectDB();
 app.use("/api/register", registerRouter);
 app.use("/api/login", loginRouter);
 app.use("/api/noti", notiRouter);
+app.use("/api/posts", postRouter);
+
 // console.log(process.env.DEBUG);
 // debug(app.get("env"));
 

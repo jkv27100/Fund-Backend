@@ -1,6 +1,6 @@
-const mongoose = require(mongoose);
+const mongoose = require('mongoose');
 
-const Schema = new mongoose.Schema();
+const Schema = mongoose.Schema;
 
 const goalSchema = new Schema({
     goalAmount: {
@@ -48,11 +48,6 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
-    postId: {
-        type: Number,
-        required: true
-    },
-
     tags: {
         type: [String]
     },
