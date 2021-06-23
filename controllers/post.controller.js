@@ -1,21 +1,18 @@
-const Post = require('../models/post');
+const Post = require("../models/post");
+const log = require("debug")("app:dev");
 
-const getPost = async(req, res) => {
-    const postRecords = await Post.find({});
-    res.json(postRecords);
-    //can be modified to getPostById
-}
+const getPost = async (req, res) => {
+  const postRecords = await Post.find({});
+  res.send(postRecords);
+};
 
 const addPost = async (req, res) => {
-    const postRecord = req.body;
-    const response = await Post.create(postRecord);
-    console.log(response);
-    res.json({status : "post addition success"})
-}
+  const postRecord = req.body;
+  const newPostObj = await Post.create(postRecord);
+  res.status(200).send(`post ${req.body.postId} is added to DB`);
+};
 
 module.exports = {
-    getPost,
-    addPost
-}
-
-
+  getPost,
+  addPost,
+};

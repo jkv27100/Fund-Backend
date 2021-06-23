@@ -1,25 +1,23 @@
-const debug = require("debug")("app:dev");
+const User = require("../models/user");
+const log = require("debug")("app:dev");
 const _ = require("lodash");
 
-const users = [
-  {
-    name: "jaggu",
-    email: "jaggu@gmail.com",
-    password: "123",
-  },
-];
+const getUsers = async (req, res) => {
+  const users = await User.find({});
+  res.send(users);
 
-const getUsers = (req, res) => {
-  res.send(users.map((e) => _.pick(e, ["name", "email"])));
+  // res.send(users.map((e) => _.pick(e, ["name", "email"])));
 };
 
-const registerUser = (req, res) => {
-  const newUser = _.pick(req.body, ["name", "email", "password"]);
+const registerUser = async (req, res) => {
+  const user = req.body;
+  const isExisting = await User.find({ email: user.email }).select({
+    email: 1,
+  });
 
-  if (users.find((e) => e.email === req.body.email))
-    return res.status(400).send("user already exists");
+  if (isExisting.toString()) return res.status(400).send("user already exists");
 
-  users.push(newUser);
+  const newUserObj = await User.create(user);
   res.status(200).send("Registerd");
 };
 

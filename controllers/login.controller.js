@@ -1,27 +1,22 @@
-const debug = require("debug")("app:dev");
+const log = require("debug")("app:dev");
 const _ = require("lodash");
 const jwt = require("jsonwebtoken");
+const User = require("../models/user");
 
-const users = [
-  {
-    name: "jaggu",
-    email: "jaggu@gmail.com",
-    password: "123",
-  },
-];
-
-const authenticate = (req, res) => {
+const authenticate = async (req, res) => {
   const user = _.pick(req.body, ["email", "password"]);
 
-  if (!users.find((e) => e.email === user.email))
+  const Email = await User.find({ email: user.email });
+  if (!Email.toString())
     return res.status(400).send("invalid username or password");
 
-  if (!users.find((e) => e.password === user.password))
+  const Password = await User.find({ password: user.password });
+  if (!Password.toString())
     return res.status(400).send("invalid username or password");
 
-  const token = jwt.sign(user, "naruto");
+  const token = jwt.sign(user, process.env.JWT_KEY);
 
-  res.send("Login succesful " + token);
+  res.send(`Login of ${user.email} is successful JWT token is ${token}`);
 };
 
 module.exports = authenticate;
