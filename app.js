@@ -1,4 +1,5 @@
 require("dotenv").config();
+const morgan = require("morgan");
 const express = require("express");
 const mongoose = require("mongoose");
 const log = require("debug")("app:dev");
@@ -11,6 +12,7 @@ const app = express();
 const PORT = process.env.PORT;
 const URI = process.env.URI;
 app.use(express.json());
+app.use(morgan("dev"));
 
 connectDB = async () => {
   try {
@@ -27,7 +29,7 @@ connectDB();
 
 app.use("/api/register", registerRouter);
 app.use("/api/login", loginRouter);
-app.use("/api/noti", notiRouter);
+app.use("/api/notification", notiRouter);
 app.use("/api/posts", postRouter);
 
 log(app.get("env"));

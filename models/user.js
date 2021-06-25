@@ -19,17 +19,17 @@ const userSchema = new Schema({
     type: String,
     default: null,
   },
-  phone_no: {
+  phone: {
     type: Number,
     required: true,
   },
   balance: {
     type: Number,
-    required: true,
+    default: 0,
   },
   donated: {
     type: Number,
-    required: true,
+    default: 0,
   },
   isApplied: {
     type: Boolean,

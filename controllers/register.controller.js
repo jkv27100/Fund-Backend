@@ -15,7 +15,8 @@ const registerUser = async (req, res) => {
     email: 1,
   });
 
-  if (isExisting.toString()) return res.status(400).send("user already exists");
+  if (isExisting.toString())
+    return res.status(400).send("user already exists try log in");
 
   const newUserObj = await User.create(user);
   res.status(200).send("Registerd");
