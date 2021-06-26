@@ -1,22 +1,29 @@
 const log = require("debug")("app:dev");
 const _ = require("lodash");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 const User = require("../models/user");
 
 const authenticate = async (req, res) => {
-  const user = _.pick(req.body, ["email", "password"]);
+  const creds = _.pick(req.body, ["email", "password"]);
 
-  const Email = await User.find({ email: user.email });
-  if (!Email.toString())
+  const user = await User.findOne({
+    email: creds.email,
+  });
+
+  if (!user) return res.status(400).send("invalid username or password");
+
+  const validPassword = await bcrypt.compare(creds.password, user.password);
+
+  if (!validPassword)
     return res.status(400).send("invalid username or password");
 
-  const Password = await User.find({ password: user.password });
-  if (!Password.toString())
-    return res.status(400).send("invalid username or password");
+  const authToken = jwt.sign(
+    _.pick(user, ["email", "password"]),
+    process.env.JWT_KEY
+  );
 
-  const token = jwt.sign(user, process.env.JWT_KEY);
-
-  res.send(`Login of ${user.email} is successful JWT token is ${token}`);
+  res.send({ user, authToken });
 };
 
 module.exports = authenticate;

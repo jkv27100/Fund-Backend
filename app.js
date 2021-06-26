@@ -1,5 +1,6 @@
 require("dotenv").config();
-const morgan = require("morgan");
+const logger = require("morgan");
+const fs = require("fs");
 const express = require("express");
 const mongoose = require("mongoose");
 const log = require("debug")("app:dev");
@@ -12,7 +13,12 @@ const app = express();
 const PORT = process.env.PORT;
 const URI = process.env.URI;
 app.use(express.json());
-app.use(morgan("dev"));
+app.use(
+  logger("common", {
+    stream: fs.createWriteStream("./logs/access.log", { flags: "a" }),
+  })
+);
+app.use(logger("dev"));
 
 connectDB = async () => {
   try {
