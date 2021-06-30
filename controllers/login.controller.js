@@ -11,19 +11,37 @@ const authenticate = async (req, res) => {
     email: creds.email,
   });
 
-  if (!user) return res.status(400).send("invalid username or password");
+  if (!user)
+    return res.status(400).send({ error: "invalid username or password" });
 
   const validPassword = await bcrypt.compare(creds.password, user.password);
 
   if (!validPassword)
-    return res.status(400).send("invalid username or password");
+    return res.status(400).send({ error: "invalid username or password" });
 
-  const authToken = jwt.sign(
-    _.pick(user, ["email", "password"]),
-    process.env.JWT_KEY
-  );
+  const data = _.pick(user, [
+    "profile_img",
+    "balance",
+    "donated",
+    "isApplied",
+    "isPoster",
+    "isLoggedIn",
+    "likedPosts",
+    "bookmarked",
+    "transactions",
+    "_id",
+    "name",
+    "email",
+    "phone",
+    "post_no",
+    "posts",
+  ]);
+  //need to do this with omit
 
-  res.send({ user, authToken });
+  // const data  = _.omit(user,['password'])
+  const authToken = jwt.sign(data, process.env.JWT_KEY);
+
+  res.send({ authToken });
 };
 
 module.exports = authenticate;
