@@ -8,6 +8,7 @@ const registerRouter = require("./routes/register.routes");
 const loginRouter = require("./routes/login.routes");
 const notiRouter = require("./routes/notifications.routes");
 const postRouter = require("./routes/posts.routes");
+const profileRouter = require("./routes/profileImg.routes");
 
 const app = express();
 const PORT = process.env.PORT;
@@ -37,6 +38,7 @@ app.use("/api/register", registerRouter);
 app.use("/api/login", loginRouter);
 app.use("/api/notification", notiRouter);
 app.use("/api/posts", postRouter);
+app.use("/api/upload", profileRouter);
 
 log(app.get("env"));
 

@@ -15,10 +15,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  profile_img: {
-    type: String,
-    default: null,
-  },
+
   phone: {
     type: Number,
     required: true,
