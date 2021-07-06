@@ -149,3 +149,9 @@
 ::ffff:192.168.43.151 - - [05/Jul/2021:07:06:07 +0000] "POST /api/upload/get_image HTTP/1.1" 200 23412
 ::ffff:192.168.43.151 - - [05/Jul/2021:07:06:18 +0000] "POST /api/upload/get_image HTTP/1.1" 200 23412
 ::ffff:192.168.43.151 - - [05/Jul/2021:07:08:03 +0000] "POST /api/upload/get_image HTTP/1.1" 200 23412
+::1 - - [06/Jul/2021:02:19:01 +0000] "GET /api/noti HTTP/1.1" 404 147
+::1 - - [06/Jul/2021:02:19:13 +0000] "GET /api/notification HTTP/1.1" 200 17
+::1 - - [06/Jul/2021:02:19:13 +0000] "GET /favicon.ico HTTP/1.1" 404 150
+::1 - - [06/Jul/2021:02:21:26 +0000] "GET /api/mail/send_mail HTTP/1.1" - -
+::1 - - [06/Jul/2021:02:21:47 +0000] "GET /api/mail/send_mail HTTP/1.1" - -
+::1 - - [06/Jul/2021:05:49:55 +0000] "GET /api/mail/send_mail HTTP/1.1" 500 1858
