@@ -149,6 +149,7 @@
 ::ffff:192.168.43.151 - - [05/Jul/2021:07:06:07 +0000] "POST /api/upload/get_image HTTP/1.1" 200 23412
 ::ffff:192.168.43.151 - - [05/Jul/2021:07:06:18 +0000] "POST /api/upload/get_image HTTP/1.1" 200 23412
 ::ffff:192.168.43.151 - - [05/Jul/2021:07:08:03 +0000] "POST /api/upload/get_image HTTP/1.1" 200 23412
+<<<<<<< HEAD
 ::ffff:192.168.43.198 - - [05/Jul/2021:08:35:04 +0000] "POST /api/login HTTP/1.1" 200 464
 ::ffff:192.168.43.198 - - [05/Jul/2021:08:35:09 +0000] "POST /api/upload/get_image HTTP/1.1" 200 23412
 ::ffff:192.168.43.198 - - [05/Jul/2021:08:35:55 +0000] "POST /api/upload/get_image HTTP/1.1" 200 23412
@@ -186,3 +187,34 @@
 ::1 - - [06/Jul/2021:16:35:28 +0000] "POST /api/posts/get_post HTTP/1.1" - -
 ::1 - - [06/Jul/2021:16:36:52 +0000] "POST /api/posts/get_post HTTP/1.1" 200 87
 ::1 - - [06/Jul/2021:16:38:17 +0000] "POST /api/posts/get_post HTTP/1.1" 200 123339
+=======
+::1 - - [06/Jul/2021:02:19:01 +0000] "GET /api/noti HTTP/1.1" 404 147
+::1 - - [06/Jul/2021:02:19:13 +0000] "GET /api/notification HTTP/1.1" 200 17
+::1 - - [06/Jul/2021:02:19:13 +0000] "GET /favicon.ico HTTP/1.1" 404 150
+::1 - - [06/Jul/2021:02:21:26 +0000] "GET /api/mail/send_mail HTTP/1.1" - -
+::1 - - [06/Jul/2021:02:21:47 +0000] "GET /api/mail/send_mail HTTP/1.1" - -
+::1 - - [06/Jul/2021:05:49:55 +0000] "GET /api/mail/send_mail HTTP/1.1" 500 1858
+::1 - - [06/Jul/2021:05:57:26 +0000] "GET /api/mail/send_mail HTTP/1.1" - -
+::1 - - [06/Jul/2021:08:29:44 +0000] "POST /api/mail/get_file HTTP/1.1" 404 157
+::1 - - [06/Jul/2021:08:31:15 +0000] "POST /api/mail/get_file HTTP/1.1" 404 157
+::1 - - [06/Jul/2021:08:32:36 +0000] "POST /api/mail/get_file HTTP/1.1" 500 650
+::1 - - [06/Jul/2021:08:37:59 +0000] "POST /api/mail/get_file HTTP/1.1" 200 14
+::1 - - [06/Jul/2021:10:17:07 +0000] "GET /api/mail/send_mail HTTP/1.1" - -
+::1 - - [06/Jul/2021:10:20:55 +0000] "POST /api/mail/get_file HTTP/1.1" 200 14
+::1 - - [06/Jul/2021:10:34:37 +0000] "POST /api/mail/get_file HTTP/1.1" 500 1671
+::1 - - [06/Jul/2021:13:03:18 +0000] "POST /api/mail/get_file HTTP/1.1" 200 14
+::1 - - [06/Jul/2021:13:03:36 +0000] "GET /api/mail/send_mail HTTP/1.1" - -
+::1 - - [06/Jul/2021:13:04:09 +0000] "GET /api/mail/send_mail HTTP/1.1" - -
+::1 - - [06/Jul/2021:13:05:17 +0000] "GET /api/mail/send_mail HTTP/1.1" - -
+::1 - - [06/Jul/2021:13:06:07 +0000] "GET /api/mail/send_mail HTTP/1.1" - -
+::1 - - [06/Jul/2021:13:06:41 +0000] "GET /api/mail/send_mail HTTP/1.1" - -
+::1 - - [06/Jul/2021:13:23:47 +0000] "POST /api/mail/get_file HTTP/1.1" 200 14
+::1 - - [06/Jul/2021:13:25:33 +0000] "GET /api/mail/send_mail HTTP/1.1" - -
+::1 - - [06/Jul/2021:13:28:19 +0000] "POST /api/mail/get_file HTTP/1.1" 200 14
+::1 - - [06/Jul/2021:13:30:37 +0000] "POST /api/mail/get_file HTTP/1.1" 200 14
+::1 - - [06/Jul/2021:13:31:32 +0000] "POST /api/mail/get_file HTTP/1.1" 200 14
+::1 - - [06/Jul/2021:13:32:11 +0000] "POST /api/mail/get_file HTTP/1.1" 200 14
+::1 - - [06/Jul/2021:13:32:53 +0000] "POST /api/mail/get_file HTTP/1.1" 200 14
+::1 - - [06/Jul/2021:13:33:40 +0000] "POST /api/mail/get_file HTTP/1.1" 200 14
+::1 - - [06/Jul/2021:13:35:33 +0000] "GET /api/mail/send_mail HTTP/1.1" - -
+>>>>>>> cce9cad90ad1bc644ac71c7a773d59c5a48c75ea
