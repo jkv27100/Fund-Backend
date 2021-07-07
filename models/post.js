@@ -1,69 +1,71 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const goalSchema = new Schema({
-    goalAmount: {
-        type: Number,
-        required: true
-    },
-    goalDays: {
-        type: Number,
-        required: true
-    },
-    amountRaised: {
-        type: Number,
-        required: true
-    }
-});
-
-
-const socialInteractionsSchema = new Schema({
-    upvotes: {
-        type: Number
-    },
-    downvotes: {
-        type: Number
-    },
-    comments: {
-        type: [String]
-    }
-})
-
-const postSchema = new Schema({
-    postId: {
-        type: Number,
-        required: true
-    },
-    thumbnail: {
-        type: String,
-        required: true,
-        default: null // add stock image link
+const postSchema = new Schema(
+  {
+    user_id: {
+      type: String,
+      required: true,
     },
     title: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
-    subtitle: {
-        type: String,
-        required: true
+    subTitle: {
+      type: String,
+      required: true,
     },
-    tags: {
-        type: [String]
-    },
-    percentage: {
-        type: Number,
-        required: true
+    tag: {
+      type: String,
+      required: true,
     },
     isApproved: {
-        type: Boolean,
-        default: false
+      type: Boolean,
+      default: false,
     },
-    socialInteractions : socialInteractionsSchema,
-    goalDetails : goalSchema
-    
-},{timestamps : true})
+    images: {
+      type: [Buffer],
+    },
+    backers: {
+      type: Number,
+      default: 0,
+    },
+    goalAmount: {
+      type: Number,
+      required: true,
+    },
+    goalDays: {
+      type: Number,
+      default: 30,
+    },
+    amountRaised: {
+      type: Number,
+      default: 0,
+    },
+    upvotes: {
+      type: Number,
+      default: 0,
+    },
+    downvotes: {
+      type: Number,
+      default: 0,
+    },
+    comments: {
+      type: [String],
+    },
+    location: {
+      type: String,
+      default: null,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
 
-const Post = mongoose.model('Post', postSchema);
+const Post = mongoose.model("Post", postSchema);
 
 module.exports = Post;
