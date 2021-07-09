@@ -25,7 +25,7 @@ const postSchema = new Schema(
       default: false,
     },
     images: {
-      type: [Buffer],
+      type: [String],
     },
     backers: {
       type: Number,
