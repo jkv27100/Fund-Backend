@@ -8,6 +8,10 @@ const getPostById = async (req, res) => {
   res.status(200).send({ success: true, message: "Found posts", postData });
 };
 
+const getApprovedPosts = async (req, res) => {
+  const posts = await Post.find({ isAprroved: true });
+};
+
 const addPost = async (req, res) => {
   const images = req.files.map((e) => e.buffer.toString("base64"));
 
@@ -23,4 +27,5 @@ const addPost = async (req, res) => {
 module.exports = {
   getPostById,
   addPost,
+  getApprovedPosts,
 };
