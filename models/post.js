@@ -39,6 +39,14 @@ const postSchema = new Schema(
       type: Number,
       default: 30,
     },
+    remainingGoalDays : {
+      type: Number,
+      default: 0,
+    },
+    postDate: {
+      type: String,
+      default: new Date(),
+    },
     amountRaised: {
       type: Number,
       default: 0,

@@ -17,5 +17,6 @@ const upload = multer({ storage, fileFilter });
 
 router.post("/get_post", postController.getPostById);
 router.post("/add_post", upload.array("images", 10), postController.addPost);
+router.post("/rem_days",)
 
 module.exports = router;
