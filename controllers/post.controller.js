@@ -32,4 +32,5 @@ const remDays = async (req, res) => {
 module.exports = {
   getPostById,
   addPost,
+  remDays
 };
