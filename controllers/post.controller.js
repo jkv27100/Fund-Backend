@@ -28,8 +28,11 @@ const remDays = async (req, res) => {
   const { _id } = req.body;
   const postData = await Post.findOne({ _id });
   let postDay = postData.postDate;
+
+  let postDate = new Date(postDay);
   let date = new Date();
-  let diff = postDay.getDate() - date.getDate();
+  let diff = date.getDate() - postDate.getDate();
+  log(diff);
   res.status(200).send({ success: true, message: "remdays", diff });
 };
 

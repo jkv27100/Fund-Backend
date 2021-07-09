@@ -16,3 +16,6 @@
 ::ffff:192.168.43.210 - - [09/Jul/2021:13:41:47 +0000] "POST /api/posts/get_post HTTP/1.1" 200 91945
 ::ffff:192.168.43.210 - - [09/Jul/2021:13:53:38 +0000] "POST /api/posts/get_post HTTP/1.1" 200 91945
 ::ffff:192.168.43.210 - - [09/Jul/2021:14:27:00 +0000] "POST /api/posts/add_post HTTP/1.1" 200 39
+::1 - - [09/Jul/2021:15:25:09 +0000] "POST /api/posts/rem_days HTTP/1.1" 200 45
+::1 - - [09/Jul/2021:15:29:51 +0000] "POST /api/posts/rem_days HTTP/1.1" 200 45
+::1 - - [09/Jul/2021:15:30:49 +0000] "POST /api/posts/rem_days HTTP/1.1" 200 45
