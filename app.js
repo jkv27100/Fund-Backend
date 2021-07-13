@@ -9,7 +9,9 @@ const loginRouter = require("./routes/login.routes");
 const notiRouter = require("./routes/notifications.routes");
 const postRouter = require("./routes/posts.routes");
 const profileRouter = require("./routes/profileImg.routes");
-const sendMailRouter = require("./routes/sendMail.routes")
+const sendMailRouter = require("./routes/sendMail.routes");
+const addCommentRouter = require("./routes/comment.routes");
+const interactionRouter = require("./routes/interaction.routes");
 
 const app = express();
 const PORT = process.env.PORT;
@@ -40,7 +42,9 @@ app.use("/api/login", loginRouter);
 app.use("/api/notification", notiRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/upload", profileRouter);
-app.use("/api/mail",sendMailRouter);
+app.use("/api/mail", sendMailRouter);
+app.use("/api/add_comment", addCommentRouter);
+app.use("/api/post_interactions", interactionRouter);
 
 log(app.get("env"));
 

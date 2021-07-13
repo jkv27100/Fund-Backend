@@ -2,11 +2,29 @@ const User = require("../models/user");
 const log = require("debug")("app:dev");
 const _ = require("lodash");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const getUsers = async (req, res) => {
-  const users = await User.find({});
+  const { user_id } = req.body;
+  const user = await User.findOne({ _id: user_id });
 
-  res.send(users.map((e) => _.pick(e, ["name", "email"])));
+  const userData = _.pick(user, [
+    "balance",
+    "donated",
+    "isApplied",
+    "isPoster",
+    "isLoggedIn",
+    "likedPosts",
+    "bookmarked",
+    "transactions",
+    "_id",
+    "name",
+    "email",
+    "phone",
+    "post_no",
+  ]);
+
+  res.send({ success: true, message: "user found", userData });
 };
 
 const registerUser = async (req, res) => {

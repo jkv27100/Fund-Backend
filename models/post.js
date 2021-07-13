@@ -59,9 +59,15 @@ const postSchema = new Schema(
       type: Number,
       default: 0,
     },
-    comments: {
-      type: [String],
-    },
+    comments: [
+      {
+        user_id: String,
+        avatar: String,
+        comment: String,
+        date: String,
+        userName: String,
+      },
+    ],
     location: {
       type: String,
       default: null,

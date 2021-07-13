@@ -15,7 +15,7 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({ storage, fileFilter });
 
-router.post("/get_post", postController.getPostById);
+router.post("/get_post", postController.getPostByUserId);
 router.get("/get_post", postController.getApprovedPosts);
 router.post("/add_post", upload.array("images", 10), postController.addPost);
 router.post("/rem_days", postController.remDays);

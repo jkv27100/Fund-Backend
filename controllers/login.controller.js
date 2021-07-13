@@ -36,9 +36,7 @@ const authenticate = async (req, res) => {
     "post_no",
     "posts",
   ]);
-  //need to do this with omit
 
-  // const data  = _.omit(user,['password'])
   const authToken = jwt.sign(data, process.env.JWT_KEY);
 
   res.send({ authToken });

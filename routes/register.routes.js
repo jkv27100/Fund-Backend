@@ -4,7 +4,7 @@ const {
   getUsers,
 } = require("../controllers/register.controller");
 
-router.get("/", getUsers);
+router.post("/get_user", getUsers);
 
 router.post("/", registerUser);
 
