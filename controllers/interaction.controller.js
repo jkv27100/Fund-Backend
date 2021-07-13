@@ -9,6 +9,8 @@ const addBookmarkPost = async (req, res) => {
 
   let bookmarkArray = user.bookmarked;
 
+  if (!bookmarkArray) bookmarkArray = [];
+
   bookmarkArray.push(post);
 
   const result = await User.updateOne(
@@ -17,17 +19,17 @@ const addBookmarkPost = async (req, res) => {
   );
 
   const newPost = await Post.findOne({ _id: postId });
-  res
-    .status(200)
-    .send({ success: true, message: "Post added to bookmarks", newPost });
+  res.status(200).send({ success: true, message: "Post added to bookmarks" });
 };
 
 const removeBookmark = async (req, res) => {
   const { postId, user_id } = req.body;
   const user = await User.findOne({ _id: user_id });
   let bookmarkArray = user.bookmarked;
+  if (!bookmarkArray) bookmarkArray = [];
 
-  const newArray = bookmarkArray.forEach((e) => e !== postId);
+  let newArray = bookmarkArray.forEach((e) => e !== postId);
+  if (!newArray) newArray = [];
   const result = await User.updateOne(
     { _id: user_id },
     { bookmarked: newArray }
@@ -38,4 +40,11 @@ const removeBookmark = async (req, res) => {
     .send({ success: true, message: "Post removed from bookmarks", newUser });
 };
 
-module.exports = { addBookmarkPost, removeBookmark };
+const getBookmarkedPosts = async (req, res) => {
+  const { user_id } = req.body;
+  const { bookmarked } = await User.findOne({ _id: user_id });
+
+  res.status(200).send({ success: true, bookmarked });
+};
+
+module.exports = { addBookmarkPost, removeBookmark, getBookmarkedPosts };
