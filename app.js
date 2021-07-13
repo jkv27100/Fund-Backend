@@ -10,6 +10,7 @@ const notiRouter = require("./routes/notifications.routes");
 const postRouter = require("./routes/posts.routes");
 const profileRouter = require("./routes/profileImg.routes");
 const sendMailRouter = require("./routes/sendMail.routes")
+const transactRouter = require("./routes/transact.routes")
 
 const app = express();
 const PORT = process.env.PORT;
@@ -41,6 +42,7 @@ app.use("/api/notification", notiRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/upload", profileRouter);
 app.use("/api/mail",sendMailRouter);
+app.use("/api/transact",transactRouter);
 
 log(app.get("env"));
 
