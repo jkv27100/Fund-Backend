@@ -9,8 +9,14 @@ const loginRouter = require("./routes/login.routes");
 const notiRouter = require("./routes/notifications.routes");
 const postRouter = require("./routes/posts.routes");
 const profileRouter = require("./routes/profileImg.routes");
+<<<<<<< HEAD
 const sendMailRouter = require("./routes/sendMail.routes")
 const transactRouter = require("./routes/transact.routes")
+=======
+const sendMailRouter = require("./routes/sendMail.routes");
+const addCommentRouter = require("./routes/comment.routes");
+const interactionRouter = require("./routes/interaction.routes");
+>>>>>>> 7cebb4c1c37cb233277663ff7835f9cd229ab855
 
 const app = express();
 const PORT = process.env.PORT;
@@ -41,8 +47,14 @@ app.use("/api/login", loginRouter);
 app.use("/api/notification", notiRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/upload", profileRouter);
+<<<<<<< HEAD
 app.use("/api/mail",sendMailRouter);
 app.use("/api/transact",transactRouter);
+=======
+app.use("/api/mail", sendMailRouter);
+app.use("/api/add_comment", addCommentRouter);
+app.use("/api/post_interactions", interactionRouter);
+>>>>>>> 7cebb4c1c37cb233277663ff7835f9cd229ab855
 
 log(app.get("env"));
 

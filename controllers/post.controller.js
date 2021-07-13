@@ -1,11 +1,16 @@
 const Post = require("../models/post");
 const log = require("debug")("app:dev");
 
-const getPostById = async (req, res) => {
+const getPostByUserId = async (req, res) => {
   const { user_id } = req.body;
   const postData = await Post.find({ user_id });
 
   res.status(200).send({ success: true, message: "Found posts", postData });
+};
+
+const getApprovedPosts = async (req, res) => {
+  const posts = await Post.find({ isApproved: true });
+  res.status(200).send({ success: true, message: "Posts found", posts });
 };
 
 const addPost = async (req, res) => {
@@ -19,18 +24,22 @@ const addPost = async (req, res) => {
   const newPostObj = await Post.create(newPost);
   res.status(200).send({ success: true, message: "Post Added" });
 };
+
 const remDays = async (req, res) => {
   const { _id } = req.body;
   const postData = await Post.findOne({ _id });
   let postDay = postData.postDate;
-  let date = new Date();
-  let diff = postDay.getDate() - date.getDate();
-  res.status(200).send({ success: true, message: "remdays", diff});
 
-}
+  let postDate = new Date(postDay);
+  let date = new Date();
+  let diff = date.getDate() - postDate.getDate();
+  log(diff);
+  res.status(200).send({ success: true, message: "remdays", diff });
+};
 
 module.exports = {
-  getPostById,
+  getPostByUserId,
   addPost,
-  remDays
+  remDays,
+  getApprovedPosts,
 };

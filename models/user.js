@@ -44,10 +44,9 @@ const userSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  likedPosts: [String],
-  bookmarked: [String],
-  transactions: [String],
-  posts: [String],
+  likedPosts: [Object],
+  bookmarked: [Object],
+  transactions: [Object],
 });
 
 const User = mongoose.model("user", userSchema);
