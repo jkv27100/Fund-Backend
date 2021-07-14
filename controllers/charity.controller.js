@@ -1,7 +1,7 @@
 const log = require("debug")("app:dev");
 const nodemailer = require("nodemailer");
 
-const sendMailService = (userMail, fileName, image) => {
+const sendMailService = (userDetails, fileName, image) => {
   let mailTransporter = nodemailer.createTransport({
     service: "hotmail",
     auth: {
@@ -12,9 +12,10 @@ const sendMailService = (userMail, fileName, image) => {
 
   let mailDetails = {
     from: "fundingtest@hotmail.com",
-    to: "admin@abhijith.codes.",
+    to: "kvjagannath63@gmail.com",
     subject: "Verification for Charity Role",
-    text: `verify the details of ${userMail} for charity role`,
+    text: `verify the details of ${userDetails.name} for charity role`,
+    html: `<p>Application for charity role submitted by <b>${userDetails.name}</b> with UID <b>${userDetails.UID}</b> adress <b>${userDetails.adress}</b> and email <b>${userDetails.email}</b> </p>`,
     attachments: [
       {
         filename: fileName,
@@ -35,15 +36,14 @@ const sendMailService = (userMail, fileName, image) => {
 const applyForCharity = (req, res) => {
   const details = req.body;
   const image = req.file;
-  log(details.email);
-  log(image.originalname);
 
   const response = sendMailService(
-    details.mail,
+    details,
     image.originalname,
     image.buffer.toString("base64")
   );
   log(response);
+
   res.status(200).send({
     success: true,
     message: "Mail sent for verification",
