@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const User = require("../models/user");
 const log = require("debug")("app:dev");
 
 const getPostByUserId = async (req, res) => {
@@ -20,6 +21,13 @@ const addPost = async (req, res) => {
     images,
     ...req.body,
   };
+
+  const { user_id } = req.body;
+
+  const user = await User.findOne({ _id: user_id });
+
+  let post_no = user.post_no + 1;
+  const result = await User.updateOne({ _id: user_id }, { post_no });
 
   const newPostObj = await Post.create(newPost);
   res.status(200).send({ success: true, message: "Post Added" });

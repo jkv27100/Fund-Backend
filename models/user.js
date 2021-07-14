@@ -32,15 +32,16 @@ const userSchema = new Schema({
     type: Number,
     default: 0,
   },
-  isApplied: {
+
+  isKickStarter: {
     type: Boolean,
     default: false,
   },
-  isPoster: {
+  isCharity: {
     type: Boolean,
     default: false,
   },
-  isLoggedIn: {
+  isBothRole: {
     type: Boolean,
     default: false,
   },
