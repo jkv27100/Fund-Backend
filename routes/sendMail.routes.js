@@ -8,7 +8,7 @@ var storage = multer.diskStorage({
       cb(null, 'uploads/')
     },
     filename: function (req, file, cb) {
-      cb(null, "upload.pdf") //Appending extension
+      cb(null, Date.now()+'.pdf') //Appending extension
     }
   })
   
@@ -18,9 +18,9 @@ const http =  require('http')
 
 
 
-router.get("/send_mail", mailController.sendMail);
-router.post("/get_file", upload.single('document'), (req, res) => {
-    console.log(req.file, req.body);
+router.get("/sendMail", mailController.sendMail);
+router.post("/get_file", upload.array('file', 2), (req, res) => {
+    console.log(req.files, req.body);
     res.send("upload success");
 })
 

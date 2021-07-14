@@ -4,7 +4,9 @@ const sendMail = () => {
     let mailTransporter = nodemailer.createTransport({
         service: 'hotmail',
         auth: {
-            user: 'fundingtest@hotmail.com',
+            // user: 'fundingtest@hotmail.com',
+            // pass: 'zedzee4545'
+            user: 'fundingdocsupload@outlook.com',
             pass: 'zedzee4545'
         }
     });
@@ -12,13 +14,21 @@ const sendMail = () => {
     let mailDetails = {
         attachments: [
 
+            // {   // file in /upload as an attachment, might change later
+            //     filename: 'upload.pdf',
+            //     path: 'uploads/upload.pdf' 
+            // },
+            {   // file in /upload as an attachment, might change later
+                filename: 'upload2.pdf',
+                path: 'uploads/upload2.pdf' 
+            },
             {   // file in /upload as an attachment, might change later
                 filename: 'upload.pdf',
                 path: 'uploads/upload.pdf' 
             }
         ],
-        from: 'fundingtest@hotmail.com',
-        to: 'admin@abhijith.codes.',
+        from: 'fundingdocsupload@outlook.com',
+        to: 'admin@abhijith.codes',
         subject: 'Test mail',
         text: 'Fund testing'
     };
@@ -27,6 +37,7 @@ const sendMail = () => {
             console.log(err);
         } else {
             fs.unlinkSync('uploads/upload.pdf')
+            fs.unlinkSync('uploads/upload2.pdf')
             res.send('Email sent successfully')
             console.log('Email sent successfully');
         }
