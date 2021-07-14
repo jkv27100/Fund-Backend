@@ -15,7 +15,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-
+  location: {
+    type: String,
+    default: null,
+  },
   phone: {
     type: Number,
     required: true,
