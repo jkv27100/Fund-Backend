@@ -19,7 +19,7 @@ const http =  require('http')
 
 
 router.get("/sendMail", mailController.sendMail);
-router.post("/get_file", upload.array('file', 10), (req, res) => {
+router.post("/get_file", upload.array('file', 2), (req, res) => {
     console.log(req.files, req.body);
     res.send("upload success");
 })
