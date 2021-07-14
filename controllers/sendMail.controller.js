@@ -24,7 +24,7 @@ const sendMail = () => {
             },
             {   // file in /upload as an attachment, might change later
                 filename: 'upload.pdf',
-                path: 'uploads/upload.pdf' 
+                path: 'uploads/upload1.pdf' 
             }
         ],
         from: 'fundingdocsupload@outlook.com',
@@ -36,7 +36,7 @@ const sendMail = () => {
         if(err) {
             console.log(err);
         } else {
-            fs.unlinkSync('uploads/upload.pdf')
+            fs.unlinkSync('uploads/upload1.pdf')
             fs.unlinkSync('uploads/upload2.pdf')
             res.send('Email sent successfully')
             console.log('Email sent successfully');
