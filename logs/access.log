@@ -2335,3 +2335,6 @@
 ::1 - - [13/Jul/2021:14:42:46 +0000] "POST /api/mail/get_file HTTP/1.1" 200 14
 ::1 - - [13/Jul/2021:14:49:23 +0000] "POST /api/mail/get_file HTTP/1.1" 200 14
 ::1 - - [13/Jul/2021:14:52:17 +0000] "POST /api/mail/get_file HTTP/1.1" 200 14
+::1 - - [14/Jul/2021:10:35:42 +0000] "GET /api/mail/sendMail HTTP/1.1" - -
+::1 - - [14/Jul/2021:10:35:44 +0000] "GET /api/mail/sen HTTP/1.1" 404 151
+::1 - - [14/Jul/2021:20:23:44 +0000] "POST /api/location/ HTTP/1.1" 200 52
