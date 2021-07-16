@@ -4,6 +4,8 @@ const _ = require("lodash");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const {accounts} = require('../accounts');
+const fetch = require('node-fetch')
+
 
 const getUsers = async (req, res) => {
   const { user_id } = req.body;
@@ -28,20 +30,28 @@ const getUsers = async (req, res) => {
   res.send({ success: true, message: "user found", userData });
 };
 
-const getCount = async () => {
-  let bx = 0;
-    User.countDocuments({}, function (err, count) {
-    console.log('count is', count)
-    // let c = count;
-    console.log('err is ', err)
-    bx = count
-    return count;
+// const getCount = async () => {
+//     User.countDocuments({}, async function (err, count) {
+//     console.log('count is', count)
+//     console.log('err is ', err)
+//     // return count;
+//     let cx = await count;
+//     return cx;
     
-  });
-
+//   });
+// }
+// let px = getCount();
+// console.log("count iss ", px)
+const getCount = async () => {
+  let response = await fetch('http://127.0.0.1:3030/api/count')
+  let data =  await response.json();
+  let c = data.count;
+  return c;
+  // console.log(data.count)
+  // return data.count;
 }
-let px =  getCount();
-console.log("count iss ", px)
+// getCount();
+
 const registerUser = async (req, res) => {
   const user = _.pick(req.body, ["name", "email", "password", "phone"]);
   const isExisting = await User.findOne({ email: user.email }).select({
@@ -49,19 +59,24 @@ const registerUser = async (req, res) => {
   });
 
   if (isExisting) return res.status(400).send("user already exists try log in");
-  // let c = 0;
-
-  // const userAcc = {"accountNo" : accounts[c]};
-  // const user2 = {...userAcc, ...user};
   const newUserObj = new User(user);
   log(user);
   const salt = await bcrypt.genSalt(10);
   newUserObj.password = await bcrypt.hash(user.password, salt);
   log(newUserObj);
-  let cx = getCount();
-  console.log(accounts[cx])
+  let cx = getCount().then(c => {
+    // console.log("cx inside is ", c);
+    // console.log("acc is ", accounts[c])
+    newUserObj.accountNo = accounts[c]
+
+  });
+  // console.log("cx is" ,cx)
   // newUserObj.accountNo = accounts[cx];
-  await newUserObj.save();
+  // console.log("userobj is ", newUserObj);
+  setTimeout(()=>{
+    newUserObj.save();
+  },3000)
+
 
   res.status(200).send("Registerd succesfully");
 };
