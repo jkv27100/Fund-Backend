@@ -9,11 +9,11 @@ const loginRouter = require("./routes/login.routes");
 const notiRouter = require("./routes/notifications.routes");
 const postRouter = require("./routes/posts.routes");
 const profileRouter = require("./routes/profileImg.routes");
-const sendMailRouter = require("./routes/sendMail.routes")
-const transactRouter = require("./routes/transact.routes")
+const sendMailRouter = require("./routes/sendMail.routes");
+const transactRouter = require("./routes/transact.routes");
 const addCommentRouter = require("./routes/comment.routes");
 const interactionRouter = require("./routes/interaction.routes");
-const locationRouter = require("./routes/location.routes")
+const locationRouter = require("./routes/location.routes");
 const postInteractionRouter = require("./routes/interaction.routes");
 const charityRouter = require("./routes/charity.routes");
 
@@ -21,6 +21,7 @@ const app = express();
 const PORT = process.env.PORT;
 const URI = process.env.URI;
 app.use(express.json());
+app.disable("etag");
 app.use(
   logger("common", {
     stream: fs.createWriteStream("./logs/access.log", { flags: "a" }),
@@ -33,6 +34,7 @@ connectDB = async () => {
     await mongoose.connect(URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useFindAndModify: false,
     });
     log("DB Is Connected...");
   } catch (error) {
@@ -49,7 +51,7 @@ app.use("/api/upload", profileRouter);
 app.use("/api/mail", sendMailRouter);
 app.use("/api/add_comment", addCommentRouter);
 app.use("/api/post_interactions", interactionRouter);
-app.use("/api/location",locationRouter)
+app.use("/api/location", locationRouter);
 app.use("/api/transact", transactRouter);
 app.use("/api/post_interactions", postInteractionRouter);
 app.use("/api/verify_charity", charityRouter);
