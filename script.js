@@ -30,10 +30,12 @@ const fetch = require("node-fetch");
 // }
 // // mainEnter();
 
-const fetchLocation = async () => {
-    const url = 'http://api.positionstack.com/v1/reverse?access_key=307964d026498c86a0fa9c84b4381213&query=12.8936221,74.8494338'
-    let response = await fetch(url);
-    let data = await response.json();
-    console.log(data);
-}
-fetchLocation();
+// const fetchLocation = async () => {
+//     const url = 'http://api.positionstack.com/v1/reverse?access_key=307964d026498c86a0fa9c84b4381213&query=12.8936221,74.8494338'
+//     let response = await fetch(url);
+//     let data = await response.json();
+//     console.log(data);
+// }
+// fetchLocation();
+
+

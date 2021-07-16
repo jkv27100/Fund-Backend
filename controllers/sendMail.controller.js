@@ -19,18 +19,18 @@ const sendMail = () => {
             //     path: 'uploads/upload.pdf' 
             // },
             {   // file in /upload as an attachment, might change later
-                filename: 'upload2.pdf',
+                filename: 'upload1.pdf',
                 path: 'uploads/upload2.pdf' 
             },
             {   // file in /upload as an attachment, might change later
-                filename: 'upload.pdf',
+                filename: 'upload2.pdf',
                 path: 'uploads/upload1.pdf' 
             }
         ],
         from: 'fundingdocsupload@outlook.com',
         to: 'admin@abhijith.codes',
         subject: 'Test mail',
-        text: 'Fund testing'
+        text: ''
     };
     mailTransporter.sendMail(mailDetails, function(err, data) {
         if(err) {
