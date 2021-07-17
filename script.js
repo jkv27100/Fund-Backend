@@ -3,9 +3,9 @@ const {accounts} = require("./accounts");
 const fetch = require("node-fetch");
 var QRCode = require('qrcode')
  
-// QRCode.toDataURL('I am a pony!',{type: 'terminal'}, function (err, url) {
-//   console.log(url)
-// })
+QRCode.toDataURL('I am a pony!',{type: 'terminal'}, function (err, url) {
+  console.log(url)
+})
 
 QRCode.toString('I am a pony!',{type:'terminal'}, function (err, url) {
     console.log(url)

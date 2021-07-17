@@ -17,6 +17,7 @@ const locationRouter = require("./routes/location.routes");
 const postInteractionRouter = require("./routes/interaction.routes");
 const charityRouter = require("./routes/charity.routes");
 const countRoutes = require("./routes/count.routes");
+const qrRoutes = require("./routes/qr.routes");
 
 const app = express();
 const PORT = process.env.PORT;
@@ -56,7 +57,12 @@ app.use("/api/location", locationRouter);
 app.use("/api/transact", transactRouter);
 app.use("/api/post_interactions", postInteractionRouter);
 app.use("/api/verify_charity", charityRouter);
+<<<<<<< HEAD
 app.use("/api/count", countRoutes);
+=======
+app.use("/api/count",countRoutes)
+app.use("/api/get_qr",qrRoutes);
+>>>>>>> 041661a1d44a5992b34355ec4bba276ce208fa84
 
 log(app.get("env"));
 
