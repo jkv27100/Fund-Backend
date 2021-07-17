@@ -45,9 +45,20 @@ const remDays = async (req, res) => {
   res.status(200).send({ success: true, message: "remdays", diff });
 };
 
+const getPostByID = async (req, res) => {
+  const { _id } = req.body;
+  try {
+    const post = await Post.findOne({ _id });
+    res.status(200).send({ success: true, messgae: "post found", post });
+  } catch (error) {
+    res.status(400).send({ success: false, messgae: error.message });
+  }
+};
+
 module.exports = {
   getPostByUserId,
   addPost,
   remDays,
   getApprovedPosts,
+  getPostByID,
 };
