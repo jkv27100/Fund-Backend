@@ -1,6 +1,28 @@
 const Web3 = require("web3");
 const {accounts} = require("./accounts");
 const fetch = require("node-fetch");
+var QRCode = require('qrcode')
+ 
+// QRCode.toDataURL('I am a pony!',{type: 'terminal'}, function (err, url) {
+//   console.log(url)
+// })
+
+QRCode.toString('I am a pony!',{type:'terminal'}, function (err, url) {
+    console.log(url)
+  })
+  
+
+
+
+
+
+
+
+
+
+
+
+
 // let web3 = new Web3(new Web3.providers.HttpProvider('HTTP://0.0.0.0:7545'));
 // var web3 = new Web3("http://127.0.0.1:7545");
 // // beforeEach( () => {
@@ -37,5 +59,9 @@ const fetch = require("node-fetch");
 //     console.log(data);
 // }
 // fetchLocation();
+
+
+
+
 
 
