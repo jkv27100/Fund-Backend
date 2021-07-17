@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ::1 - - [15/Jul/2021:08:02:58 +0000] "POST /api/register/ HTTP/1.1" 200 21
 ::1 - - [15/Jul/2021:08:04:51 +0000] "POST /api/register/ HTTP/1.1" 400 30
 ::1 - - [15/Jul/2021:08:05:05 +0000] "POST /api/register/ HTTP/1.1" 200 21
@@ -234,3 +235,5 @@
 ::1 - - [16/Jul/2021:22:03:29 +0000] "POST /api/register/ HTTP/1.1" 200 21
 ::ffff:127.0.0.1 - - [16/Jul/2021:22:03:29 +0000] "GET /api/count HTTP/1.1" 200 11
 ::1 - - [17/Jul/2021:14:35:35 +0000] "GET /api/get_qr HTTP/1.1" 200 1063
+=======
+>>>>>>> a6ebf2db3cb9bff9a624d9ce2a57021edd3f2130
