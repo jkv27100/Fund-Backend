@@ -11,6 +11,15 @@ const addBookmarkPost = async (req, res) => {
 
   if (!bookmarkArray) bookmarkArray = [];
 
+  let isPresent = bookmarkArray.filter((e) => {
+    return e._id.toString() === postId.toString();
+  });
+  log(isPresent.toString());
+  if (isPresent.toString())
+    return res
+      .status(400)
+      .send({ success: false, message: "Already bookmarked" });
+
   bookmarkArray.push(post);
 
   const result = await User.updateOne(
@@ -47,4 +56,31 @@ const getBookmarkedPosts = async (req, res) => {
   res.status(200).send({ success: true, bookmarked });
 };
 
-module.exports = { addBookmarkPost, removeBookmark, getBookmarkedPosts };
+const upvotePost = async (req, res) => {
+  const { user_id, post_id } = req.body;
+  const post = await Post.findOne({ _id: post_id });
+  let newLikedArray = post.likedUsers;
+
+  if (newLikedArray.includes(user_id))
+    return res
+      .status(400)
+      .send({ success: false, message: "You have already liked" });
+  newLikedArray.push(user_id);
+
+  const result = await Post.updateOne(
+    { _id: post_id },
+    { likedUsers: newLikedArray }
+  );
+
+  const upvote = post.upvotes + 1;
+  const result2 = await Post.updateOne({ _id: post_id }, { upvotes: upvote });
+
+  res.status(200).send({ success: true, message: "post liked" });
+};
+
+module.exports = {
+  addBookmarkPost,
+  removeBookmark,
+  getBookmarkedPosts,
+  upvotePost,
+};

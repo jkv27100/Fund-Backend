@@ -55,10 +55,7 @@ const postSchema = new Schema(
       type: Number,
       default: 0,
     },
-    downvotes: {
-      type: Number,
-      default: 0,
-    },
+
     comments: [
       {
         user_id: String,
@@ -68,6 +65,7 @@ const postSchema = new Schema(
         userName: String,
       },
     ],
+
     location: {
       type: String,
       default: null,
@@ -76,6 +74,7 @@ const postSchema = new Schema(
       type: String,
       required: true,
     },
+    likedUsers: [String],
   },
   { timestamps: true }
 );

@@ -44,13 +44,12 @@ const userSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  accountNo : {
-    type : String,
-    default : null,
+  accountNo: {
+    type: String,
+    default: null,
   },
-  likedPosts: [Object],
   bookmarked: [Object],
-  transactions: [Object],
+  transactions: [String],
 });
 
 const User = mongoose.model("user", userSchema);
