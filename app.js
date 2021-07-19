@@ -24,11 +24,11 @@ const PORT = process.env.PORT;
 const URI = process.env.URI;
 app.use(express.json());
 app.disable("etag");
-app.use(
-  logger("common", {
-    stream: fs.createWriteStream("./logs/access.log", { flags: "a" }),
-  })
-);
+// app.use(
+//   logger("common", {
+//     stream: fs.createWriteStream("./logs/access.log", { flags: "a" }),
+//   })
+// );
 app.use(logger("dev"));
 
 connectDB = async () => {
@@ -57,8 +57,8 @@ app.use("/api/location", locationRouter);
 app.use("/api/transact", transactRouter);
 app.use("/api/post_interactions", postInteractionRouter);
 app.use("/api/verify_charity", charityRouter);
-app.use("/api/count",countRoutes)
-app.use("/api/get_qr",qrRoutes);
+app.use("/api/count", countRoutes);
+app.use("/api/get_qr", qrRoutes);
 
 log(app.get("env"));
 

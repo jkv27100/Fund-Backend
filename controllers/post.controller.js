@@ -1,6 +1,7 @@
 const Post = require("../models/post");
 const User = require("../models/user");
 const log = require("debug")("app:dev");
+const sharp = require("sharp");
 
 const getPostByUserId = async (req, res) => {
   const { user_id } = req.body;
@@ -15,8 +16,20 @@ const getApprovedPosts = async (req, res) => {
 };
 
 const addPost = async (req, res) => {
-  const images = req.files.map((e) => e.buffer.toString("base64"));
+  const files = req.files.map((e) => e.buffer);
+  const resizedImage = [];
 
+  const compressImage = async (image) => {
+    const img = await sharp(image).resize(200).toBuffer();
+    return img;
+  };
+
+  for (let i = 0; i < files.length; i++) {
+    let compressed = await compressImage(files[i]);
+    resizedImage.push(compressed);
+  }
+
+  let images = resizedImage.map((e) => e.toString("base64"));
   const newPost = {
     images,
     ...req.body,

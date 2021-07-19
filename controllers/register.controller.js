@@ -3,9 +3,8 @@ const log = require("debug")("app:dev");
 const _ = require("lodash");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const {accounts} = require('../accounts');
-const fetch = require('node-fetch')
-
+const { accounts } = require("../accounts");
+const fetch = require("node-fetch");
 
 const getUsers = async (req, res) => {
   const { user_id } = req.body;
@@ -14,11 +13,6 @@ const getUsers = async (req, res) => {
   const userData = _.pick(user, [
     "balance",
     "donated",
-    "isApplied",
-    "isPoster",
-    "isLoggedIn",
-    "likedPosts",
-    "bookmarked",
     "transactions",
     "_id",
     "name",
@@ -37,19 +31,19 @@ const getUsers = async (req, res) => {
 //     // return count;
 //     let cx = await count;
 //     return cx;
-    
+
 //   });
 // }
 // let px = getCount();
 // console.log("count iss ", px)
 const getCount = async () => {
-  let response = await fetch('http://127.0.0.1:3030/api/count')
-  let data =  await response.json();
+  let response = await fetch("http://127.0.0.1:3030/api/count");
+  let data = await response.json();
   let c = data.count;
   return c;
   // console.log(data.count)
   // return data.count;
-}
+};
 // getCount();
 
 const registerUser = async (req, res) => {
@@ -64,19 +58,17 @@ const registerUser = async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   newUserObj.password = await bcrypt.hash(user.password, salt);
   log(newUserObj);
-  let cx = getCount().then(c => {
+  let cx = getCount().then((c) => {
     // console.log("cx inside is ", c);
     // console.log("acc is ", accounts[c])
-    newUserObj.accountNo = accounts[c]
-
+    newUserObj.accountNo = accounts[c];
   });
   // console.log("cx is" ,cx)
   // newUserObj.accountNo = accounts[cx];
   // console.log("userobj is ", newUserObj);
-  setTimeout(()=>{
+  setTimeout(() => {
     newUserObj.save();
-  },3000)
-
+  }, 3000);
 
   res.status(200).send("Registerd succesfully");
 };

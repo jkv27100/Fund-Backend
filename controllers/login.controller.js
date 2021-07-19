@@ -20,19 +20,11 @@ const authenticate = async (req, res) => {
     return res.status(400).send({ error: "invalid username or password" });
 
   const data = _.pick(user, [
-    "balance",
-    "donated",
-    "likedPosts",
-    "bookmarked",
-    "transactions",
     "_id",
-    "name",
-    "email",
-    "phone",
-    "post_no",
     "isCharity",
     "isKickStarter",
     "isBothRole",
+    "accountNo",
   ]);
 
   const authToken = jwt.sign(data, process.env.JWT_KEY);
