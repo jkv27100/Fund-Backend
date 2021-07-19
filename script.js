@@ -3,13 +3,13 @@ const {accounts} = require("./accounts");
 const fetch = require("node-fetch");
 var QRCode = require('qrcode')
  
-QRCode.toDataURL('I am a pony!',{type: 'terminal'}, function (err, url) {
-  console.log(url)
-})
+// QRCode.toDataURL('I am a pony!',{type: 'terminal'}, function (err, url) {
+//   console.log(url)
+// })
 
-QRCode.toString('I am a pony!',{type:'terminal'}, function (err, url) {
-    console.log(url)
-  })
+// QRCode.toString('I am a pony!',{type:'terminal'}, function (err, url) {
+//     console.log(url)
+//   })
   
 
 
@@ -23,18 +23,21 @@ QRCode.toString('I am a pony!',{type:'terminal'}, function (err, url) {
 
 
 
-// let web3 = new Web3(new Web3.providers.HttpProvider('HTTP://0.0.0.0:7545'));
+let web3 = new Web3(new Web3.providers.HttpProvider('HTTP://0.0.0.0:7545'));
 // var web3 = new Web3("http://127.0.0.1:7545");
-// // beforeEach( () => {
-// //     web3.eth.getAccounts().then((fetchedAccounts) =>{
-// //          console.log(fetchedAccounts);
-// //     });
-// //   })
+// beforeEach( () => {
+//     web3.eth.getAccounts().then((fetchedAccounts) =>{
+//          console.log(fetchedAccounts);
+//     });
+//   })
 
 // web3.eth.getAccounts().then((fetchedAccounts) =>{
 //     console.log(fetchedAccounts);
 // });
-// console.log(web3.eth.accounts);
+console.log(web3.eth.accounts);
+var balance = web3.eth.getBalance(accounts[2]); //Will give value in.
+
+balance.then(c => console.log(c))
 // function mainEnter() {
 //         web3.eth.getAccounts(function(error, result) {
 //         web3.eth.sendTransaction(
