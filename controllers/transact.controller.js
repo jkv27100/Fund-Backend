@@ -3,16 +3,19 @@ const fetch = require("node-fetch");
 const {accounts} = require("../accounts");
 let web3 = new Web3("http://127.0.0.1:7545");
 
-const sendE = (s,r) => {
+var hash = "";
+const sendE = async (s,r,v) => {
     web3.eth.getAccounts(function(error, result) {
     web3.eth.sendTransaction(
         {
           from:s,
           to:r,
-          value:  "1000000000000000000", 
+          value:v, 
           data: "0xdf"
         }, function(err, transactionHash) {
             if (!err)
+            hash = transactionHash;
+            console.log('hash is ',hash)
             console.log(transactionHash + " success"); 
         });
     });
@@ -22,9 +25,9 @@ const converter = async(val) => {
     let data = await response.json();
     let ethVal = data.ETH.INR;
     let inr = 1 / Math.floor(ethVal);
-    console.log(inr * val);
-    const weiVal = Web3.utils.toWei(inr, 'ether');
-    console.log(weiVal);
+    console.log("inr ",inr * val);
+    const weiVal = Web3.utils.toWei((inr * val).toString(), 'ether');
+    return weiVal;
 }
 
 const sendEth = async (req, res) => {
@@ -33,9 +36,19 @@ const sendEth = async (req, res) => {
     const val = req.body.val;
     let s = accounts[senderAddress];
     let r = accounts[recipientAddress];
-    sendE(s,r,val)
-    res.send("send success");
-    console.log(s,r)
+    let pox = 0;
+    converter(val).then(c => {
+        sendE(s,r,c);
+        setTimeout((() => {
+            res.send({"status" : "success", "hash" :hash});
+          }), 1000)
+        console.log(s,r,transHash);
+
+    });
+    // console.log("converted value : ", pox);
+    // // sendE(s,r,val)
+    // res.send("send success");
+    // console.log(s,r)
 }
 module.exports = {
     sendEth
