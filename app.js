@@ -57,12 +57,8 @@ app.use("/api/location", locationRouter);
 app.use("/api/transact", transactRouter);
 app.use("/api/post_interactions", postInteractionRouter);
 app.use("/api/verify_charity", charityRouter);
-<<<<<<< HEAD
 app.use("/api/count", countRoutes);
-=======
-app.use("/api/count",countRoutes)
-app.use("/api/get_qr",qrRoutes);
->>>>>>> 041661a1d44a5992b34355ec4bba276ce208fa84
+app.use("/api/get_qr", qrRoutes);
 
 log(app.get("env"));
 

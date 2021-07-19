@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 var imageSchema = new Schema({
   user_id: String,
-  profile_img: Buffer,
+  profile_img: String,
 });
 
 const Profile = new mongoose.model("Image", imageSchema);

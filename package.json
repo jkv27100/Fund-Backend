@@ -25,6 +25,7 @@
     "nodemailer": "^6.6.2",
     "qrcode": "^1.4.4",
     "sendotp": "^1.2.9",
+    "sharp": "^0.28.3",
     "web3": "^1.4.0"
   },
   "devDependencies": {}

@@ -24,6 +24,7 @@ const authenticate = async (req, res) => {
     "isCharity",
     "isKickStarter",
     "isBothRole",
+    "accountNo",
   ]);
 
   const authToken = jwt.sign(data, process.env.JWT_KEY);
