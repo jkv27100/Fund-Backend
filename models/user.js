@@ -50,6 +50,7 @@ const userSchema = new Schema({
   },
   bookmarked: [Object],
   transactions: [String],
+  notifications: [String],
 });
 
 const User = mongoose.model("user", userSchema);

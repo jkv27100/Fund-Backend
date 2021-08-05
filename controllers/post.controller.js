@@ -20,7 +20,7 @@ const addPost = async (req, res) => {
   const resizedImage = [];
 
   const compressImage = async (image) => {
-    const img = await sharp(image).resize(200).toBuffer();
+    const img = await sharp(image).resize(400).toBuffer();
     return img;
   };
 

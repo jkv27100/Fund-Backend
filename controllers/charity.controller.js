@@ -42,7 +42,6 @@ const applyForCharity = (req, res) => {
     image.originalname,
     image.buffer.toString("base64")
   );
-  log(response);
 
   res.status(200).send({
     success: true,

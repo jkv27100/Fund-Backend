@@ -1,30 +1,13 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-//need to reconsider the notification schema model
 const notiDetails = new Schema({
-    title : {
-        type : String,
-        required : true
-    },
-    details : {
-        type : String,
-        required : true
-    },
-    notificationId : {
-        type : Number,
-        required : true
-    }
+  message: {
+    type: String,
+    required: true,
+  },
 });
 
-const notificationSchema = new Schema({
-    userId : {
-        type: Number,
-        required: true
-    },
-    userNotifications : notiDetails
-}, {timestamps : true});
-
-const Notification = mongoose.model('Notification', notificationSchema);
+const Notification = mongoose.model("Notification", notiDetails);
 module.exports = Notification;
