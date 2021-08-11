@@ -18,11 +18,8 @@ const postInteractionRouter = require("./routes/interaction.routes");
 const charityRouter = require("./routes/charity.routes");
 const countRoutes = require("./routes/count.routes");
 const qrRoutes = require("./routes/qr.routes");
-<<<<<<< HEAD
 const forgotPasswordRouter = require("./routes/forgotPassword.routes");
-=======
 const balanceRouter = require("./routes/balance.routes");
->>>>>>> 05fe3d104585a23dd477750a352b94bacc2ffdda
 
 const app = express();
 const PORT = process.env.PORT;
@@ -65,7 +62,7 @@ app.use("/api/verify_charity", charityRouter);
 app.use("/api/count", countRoutes);
 app.use("/api/get_qr", qrRoutes);
 app.use("/api/forgotPassword", forgotPasswordRouter);
-app.use("/api/balance",balanceRouter)
+app.use("/api/balance", balanceRouter);
 
 log(app.get("env"));
 

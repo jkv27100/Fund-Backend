@@ -25,6 +25,7 @@ const authenticate = async (req, res) => {
     "isKickStarter",
     "isBothRole",
     "accountNo",
+    "name",
   ]);
 
   const authToken = jwt.sign(data, process.env.JWT_KEY);

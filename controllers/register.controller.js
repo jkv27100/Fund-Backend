@@ -19,6 +19,7 @@ const getUsers = async (req, res) => {
     "email",
     "phone",
     "post_no",
+    "accountNo",
   ]);
 
   res.send({ success: true, message: "user found", userData });

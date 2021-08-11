@@ -75,6 +75,14 @@ const upvotePost = async (req, res) => {
   const upvote = post.upvotes + 1;
   const result2 = await Post.updateOne({ _id: post_id }, { upvotes: upvote });
 
+  const postOwner = await User.findOne({ _id: post.user_id });
+  const newNotification = postOwner.notifications;
+  newNotification.push("A user just upvoted your post");
+  const notiResult = await User.updateOne(
+    { _id: post.user_id },
+    { notifications: newNotification }
+  );
+
   res.status(200).send({ success: true, message: "post liked" });
 };
 
