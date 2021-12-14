@@ -2,6 +2,7 @@ const Web3 = require("web3");
 const fetch = require("node-fetch");
 const { accounts } = require("../accounts");
 const User = require("../models/user");
+const Post = require("../models/post");
 let web3 = new Web3("http://127.0.0.1:7545");
 
 var hash = "";
@@ -40,27 +41,33 @@ const sendEth = async (req, res) => {
   const senderAddress = req.body.sendEthAddy;
   const recipientAddress = req.body.recEthAddy;
   const val = req.body.val;
-  const sendUser = await User.findOne({ accountNo: recipientAddress });
-  const recvUser = await User.findOne({ accountNo: senderAddress });
+  const toUser = await User.findOne({ accountNo: recipientAddress });
+  const fromUser = await User.findOne({ accountNo: senderAddress });
+  const currentPost = await Post.findOne({ user_id: toUser._id });
 
   const updateUser = async () => {
-    let newTransac = sendUser.transactions;
-    newTransac.push(hash);
+    let postOwnerTransac = toUser.transactions;
+    let currentUserTransac = fromUser.transactions;
+    postOwnerTransac.push(hash);
     const done = await User.updateOne(
-      { _id: sendUser._id },
-      { transactions: newTransac }
+      { _id: toUser._id },
+      { transactions: postOwnerTransac }
+    );
+    const don2 = await User.updateOne(
+      { _id: fromUser._id },
+      { transactions: currentUserTransac }
     );
 
-    let totalAmount = sendUser.amountRaised + INRval;
+    let totalAmount = parseInt(currentPost.amountRaised + INRval);
 
-    const one = await User.updateOne(
-      { _id: sendUser._id },
+    const one = await Post.updateOne(
+      { user_id: toUser._id },
       { amountRaised: totalAmount }
     );
 
-    let totalDonation = recvUser.donated + INRval;
+    let totalDonation = fromUser.donated + INRval;
     const don = await User.updateOne(
-      { _id: recvUser._id },
+      { _id: fromUser._id },
       { donated: totalDonation }
     );
   };
